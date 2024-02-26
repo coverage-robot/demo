@@ -1,0 +1,68 @@
+name: TypeScript and Jest
+
+on:
+    push:
+        branches:
+            - main
+        paths:
+            - '.github/workflows/typescript-jest.yml'
+            - 'examples/typescript-jest/**'
+
+    pull_request:
+        branches:
+            - main
+        paths:
+            - '.github/workflows/typescript-jest.yml'
+            - 'examples/typescript-jest/**'
+
+    workflow_dispatch:
+
+concurrency:
+    group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+    cancel-in-progress: true
+
+defaults:
+    run:
+        shell: bash
+        working-directory: './examples/typescript-jest/'
+
+env:
+    node-version: 18
+    working-directory: './examples/typescript-jest/'
+
+jobs:
+    typescript-jest-tests:
+        name: "TypeScript and Jest Tests"
+        runs-on: ubuntu-latest
+
+        steps:
+            -   uses: actions/checkout@v4
+
+            -   uses: actions/setup-node@v4
+                with:
+                    node-version: ${{ env.node-version }}
+
+            -   name: Install Dependencies
+                run: npm install
+
+            -   name: Run Prettier
+                run: npm run lint:style
+
+            -   name: Run TypeScript
+                run: npm run lint:types
+
+            -   name: Run ESLint
+                run: npm run lint:static-analysis
+
+            -   name: Run Jest
+                if: always()
+                run: npm run test:coverage
+
+            -   uses: coverage-robot/action@v1.0.4
+                if: always()
+                with:
+                    token: ${{ secrets.COVERAGE_TOKEN }}
+                    files: |
+                        ${{ env.working-directory }}/coverage/lcov.info
+                    tag: typescript-jest
+                continue-on-error: true
