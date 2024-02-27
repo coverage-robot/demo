@@ -4,8 +4,12 @@ updates:
     directory: /
     schedule:
       interval: daily
+    assignees:
+      - "ryanmab"
 
   - package-ecosystem: npm
     directory: /examples/typescript-jest/
     schedule:
       interval: daily
+    assignees:
+      - "ryanmab"
