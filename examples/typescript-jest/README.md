@@ -4,8 +4,8 @@
 
 ![Gameplay](resources/visuals.png)
 
-This is a simple game using TypeScript and Jest to demonstrate using Coverage Robot in a
-Frontend focussed project.
+This is a simple game using TypeScript and Jest to demonstrate
+using Coverage Robot in a Frontend focussed project.
 
 The rules are simple:
 
