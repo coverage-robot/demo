@@ -5,6 +5,12 @@ import { useCallback, useEffect, useState } from "react";
  */
 export const useTimer = (onFinish: () => void, time: number = 4000) => {
   const [timeRemaining, setTimeRemaining] = useState(time);
+  const [isPaused, setIsPaused] = useState(false);
+
+  const toggleTimer = useCallback(
+    () => setIsPaused((prev) => !prev),
+    [setIsPaused],
+  );
 
   const resetTimer = useCallback(
     () => setTimeRemaining(time),
@@ -13,10 +19,16 @@ export const useTimer = (onFinish: () => void, time: number = 4000) => {
 
   useEffect(() => {
     const timer = setInterval(() => {
+      if (isPaused) {
+        // Don't decrement the time remaining if the timer is paused.
+        return;
+      }
+
       setTimeRemaining((prev) => prev - 1);
     }, 1);
 
     if (timeRemaining <= 0) {
+      // The timers elapsed, so we call the onFinish callback and reset the timer.
       onFinish();
       resetTimer();
     }
@@ -26,5 +38,5 @@ export const useTimer = (onFinish: () => void, time: number = 4000) => {
     };
   }, [timeRemaining, onFinish, resetTimer, setTimeRemaining]);
 
-  return { timeRemaining, resetTimer };
+  return { timeRemaining, resetTimer, isPaused, toggleTimer };
 };
