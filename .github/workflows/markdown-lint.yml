@@ -1,0 +1,14 @@
+name: Markdown Lint
+
+on: [push, pull_request]
+
+jobs:
+  mdl:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Run Markdown Lint
+        uses: actionshub/markdownlint@main
+        with:
+          filesToIgnoreRegex: "node_modules\\/.*"
