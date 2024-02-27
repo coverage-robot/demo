@@ -1,9 +1,15 @@
 name: Markdown Lint
 
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - main
+
+  pull_request:
 
 jobs:
-  mdl:
+  lint:
+    name: Lint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2

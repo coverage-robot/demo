@@ -1,4 +1,5 @@
 # Jest and TypeScript
+
 ![Coverage Robot](https://api.coveragerobot.com/v1/graph/github/coverage-robot/demo/badge.svg?token=074035b4a5797b68699e3428c3713ff9db5caaba650c530bfa)
 
 ![Gameplay](resources/visuals.png)
@@ -11,12 +12,14 @@ The rules are simple:
 3. If you miss the time, your score wont increase!
 
 ## Local Development
+
 ```bash
 npm install
 npm run dev
 ```
 
 ## Automation Tests
+
 ```bash
 npm install
 npm run test:coverage
