@@ -36,7 +36,7 @@ export const useTimer = (onFinish: () => void, time: number = 4000) => {
     return () => {
       clearInterval(timer);
     };
-  }, [timeRemaining, onFinish, resetTimer, setTimeRemaining]);
+  }, [timeRemaining, onFinish, resetTimer, setTimeRemaining, isPaused]);
 
   return { timeRemaining, resetTimer, isPaused, toggleTimer };
 };
