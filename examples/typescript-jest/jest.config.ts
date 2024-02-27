@@ -10,6 +10,7 @@ const config: Config = {
     ".styled.{tsx,ts}",
     "index.ts",
   ],
+  coverageReporters: [["lcov", { projectRoot: ".." }]],
 };
 
 export default config;
