@@ -18,11 +18,14 @@ const cols = 4;
 const App = ({ className }: Props) => {
   const [difficulty, setDifficulty] = useState<Difficulty>(Difficulty.EASY);
 
-  const { score, incrementScore, activeTile, timeRemaining } = useGameManager(
-    rows,
-    cols,
-    difficulty,
-  );
+  const {
+    score,
+    incrementScore,
+    activeTile,
+    timeRemaining,
+    isPaused,
+    toggleTimer,
+  } = useGameManager(rows, cols, difficulty);
 
   return (
     <main className={className}>
@@ -31,14 +34,19 @@ const App = ({ className }: Props) => {
         timeRemaining={timeRemaining}
         difficulty={difficulty}
         setDifficulty={setDifficulty}
+        isPaused={isPaused}
+        toggleTimer={toggleTimer}
       />
       <Board
         rows={rows}
         cols={cols}
         onTilePressed={(row: number, col: number) =>
-          row === activeTile?.row && col === activeTile?.col && incrementScore()
+          !isPaused &&
+          row === activeTile?.row &&
+          col === activeTile?.col &&
+          incrementScore()
         }
-        activeTile={activeTile}
+        activeTile={!isPaused ? activeTile : undefined}
         timeRemaining={timeRemaining}
       />
     </main>
