@@ -10,6 +10,8 @@ describe("StatsCard", () => {
         difficulty={Difficulty.HARD}
         timeRemaining={1000}
         setDifficulty={() => {}}
+        isPaused
+        toggleTimer={() => {}}
       />,
     );
 
@@ -23,6 +25,8 @@ describe("StatsCard", () => {
         difficulty={Difficulty.HARD}
         timeRemaining={1000}
         setDifficulty={() => {}}
+        isPaused
+        toggleTimer={() => {}}
       />,
     );
 
@@ -36,6 +40,8 @@ describe("StatsCard", () => {
         difficulty={Difficulty.HARD}
         timeRemaining={1000}
         setDifficulty={() => {}}
+        isPaused
+        toggleTimer={() => {}}
       />,
     );
 
