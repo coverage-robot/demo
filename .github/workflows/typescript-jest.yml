@@ -58,7 +58,7 @@ jobs:
                 if: always()
                 run: npm run test:coverage
 
-            -   uses: coverage-robot/action@v1.0.5
+            -   uses: coverage-robot/action@v1.0.6
                 if: always()
                 with:
                     token: ${{ secrets.COVERAGE_TOKEN }}
