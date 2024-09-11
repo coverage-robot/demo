@@ -13,6 +13,8 @@ export type GameManager = {
   incrementScore: () => void;
   activeTile?: ActiveTile;
   timeRemaining: number;
+  isPaused: boolean;
+  toggleTimer: () => void;
 };
 
 export type ActiveTile = { row: number; col: number };
@@ -40,12 +42,22 @@ export const useGameManager = (
     resetTimer();
   };
 
-  const { timeRemaining, resetTimer } = useTimer(nextTile, tileDuration);
+  const { timeRemaining, resetTimer, isPaused, toggleTimer } = useTimer(
+    nextTile,
+    tileDuration,
+  );
 
   const incrementScore = () => {
     setScore((prev) => prev + 1);
     nextTile();
   };
 
-  return { score, incrementScore, timeRemaining, activeTile };
+  return {
+    score,
+    incrementScore,
+    timeRemaining,
+    activeTile,
+    isPaused,
+    toggleTimer,
+  };
 };

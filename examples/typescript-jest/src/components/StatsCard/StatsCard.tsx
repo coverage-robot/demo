@@ -1,5 +1,6 @@
 import { DifficultySelector } from "../DifficultySelector";
 import { Difficulty } from "../../hooks/useGameManager.ts";
+import { PauseButton } from "../PauseButton";
 
 interface Props {
   className?: string;
@@ -7,6 +8,8 @@ interface Props {
   timeRemaining: number;
   difficulty: Difficulty;
   setDifficulty: (difficulty: Difficulty) => void;
+  isPaused: boolean;
+  toggleTimer: () => void;
 }
 
 export const StatsCard = ({
@@ -15,6 +18,8 @@ export const StatsCard = ({
   timeRemaining,
   difficulty,
   setDifficulty,
+  isPaused,
+  toggleTimer,
 }: Props) => (
   <aside className={className}>
     <div>
@@ -24,7 +29,7 @@ export const StatsCard = ({
         setDifficulty={setDifficulty}
         difficulty={difficulty}
       />
+      <PauseButton onClick={toggleTimer} isPaused={isPaused} />
     </div>
-    <div></div>
   </aside>
 );
