@@ -1,6 +1,6 @@
 # Example Projects
 
-This a collection of example projects that demonstrate how to use Coverage Robot.
+This a collection of example projects that demonstrate how to use [Coverage Robot](https://coveragerobot.com).
 
 ## Table Of Contents
 
